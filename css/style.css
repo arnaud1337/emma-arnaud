@@ -506,3 +506,47 @@ html.gate-locked .back-top { visibility: hidden; }
 .gate-card__hint {
   margin: 1rem 0 0; font-size: .78rem; color: var(--ink); opacity: .55;
 }
+
+/* Page « Hébergements à proximité » ------------------------------------ */
+.header-back {
+  font-size: .72rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--forest); white-space: nowrap;
+}
+.header-back:hover { color: var(--bronze-text); }
+
+.stay-intro { max-width: 44rem; }
+
+.stay-grid { display: grid; gap: 1.5rem; margin-top: 1rem; }
+@media (min-width: 700px) { .stay-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (min-width: 1200px) { .stay-grid { grid-template-columns: repeat(3, 1fr); } }
+
+.stay-card {
+  display: flex; flex-direction: column; gap: 1rem;
+  background: #fffdf8; border: 1px solid var(--line); padding: 1.75rem;
+}
+.stay-card__head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+.stay-card__name {
+  font-family: var(--serif); font-weight: 600; font-size: 1.4rem; line-height: 1.2;
+  color: var(--forest);
+}
+.stay-card__capacity {
+  flex: none; display: grid; place-items: center; width: 3.2rem; height: 3.2rem;
+  border: 1px solid var(--bronze); border-radius: 50%; text-align: center; line-height: 1.05;
+}
+.stay-card__capacity span { display: block; font-family: var(--serif); font-weight: 600; font-size: 1.05rem; color: var(--bronze-text); }
+.stay-card__capacity small { display: block; font-size: .55rem; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: var(--bronze-text); }
+
+.stay-card__meta { display: flex; flex-wrap: wrap; gap: .3rem 1rem; font-size: .82rem; color: var(--muted); }
+.stay-card__meta .link { text-decoration: underline; text-underline-offset: .2em; }
+.stay-card__meta .link:hover { color: var(--bronze-text); }
+
+.stay-card__desc { font-size: .92rem; line-height: 1.7; color: var(--copy); }
+
+.stay-card__foot { margin-top: auto; padding-top: 1rem; border-top: 1px solid var(--line); display: flex; flex-direction: column; gap: .6rem; }
+.stay-card__price { font-family: var(--serif); font-weight: 600; font-size: 1.05rem; color: var(--forest); }
+.stay-card__price span { font-family: var(--sans); font-weight: 400; font-size: .78rem; color: var(--muted); }
+.stay-card__links { display: flex; flex-wrap: wrap; gap: .3rem .9rem; font-size: .8rem; color: var(--muted); }
+.stay-card__links .link { text-decoration: underline; text-underline-offset: .2em; }
+.stay-card__links .link:hover { color: var(--bronze-text); }
+
+.stay-footnote { margin-top: 3rem; max-width: 44rem; }
