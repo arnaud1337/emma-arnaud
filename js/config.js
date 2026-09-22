@@ -14,18 +14,18 @@ window.SITE_CONFIG = {
   // les boutons affichent « La cagnotte sera bientôt disponible ».
   giftUrl: "",
 
-  // Lien pour écrire aux mariés : soit un lien de discussion de groupe WhatsApp
-  // ("https://chat.whatsapp.com/XXXXXXXX", créé depuis l'appli WhatsApp : Groupe →
-  // Infos du groupe → Inviter via lien), soit un lien vers un seul numéro
-  // ("https://wa.me/33612345678", sans le 0 initial ni espaces). Le premier permet
-  // de joindre les deux mariés dans une même discussion ; le second n'ouvre une
-  // conversation qu'avec un seul numéro. Tant que ce champ est vide, le bouton
-  // affiche « Le contact WhatsApp sera bientôt disponible ».
-  whatsappUrl: "",
+    // Coordonnées des mariés, utilisées pour les boutons « Écrire à Emma » /
+  // « Écrire à Arnaud » (WhatsApp, un lien par personne) et pour le bouton
+  // « Nous envoyer un e-mail » (un seul clic, adressé aux deux en même temps).
+  // Tant qu'un champ whatsapp est vide, son bouton affiche « bientôt disponible ».
+  contacts: {
+    emma: { name: "Emma", whatsapp: "https://wa.me/33636358581", email: "em.maisonnial@gmail.com" },
+    arnaud: { name: "Arnaud", whatsapp: "https://wa.me/33683959031", email: "arnaud.caillat@gmail.com" }
+  },
 
   // Adresse e-mail de secours (facultative). Utilisée par le formulaire RSVP
   // uniquement si aucun service d'enregistrement (rsvp.endpoint) n'est configuré.
-  contactEmail: "",
+  contactEmail: "arnaud.caillat@gmail.com,em.maisonnial@gmail.com",
 
   // Enregistrement des réponses RSVP — voir le README (section « Recevoir les réponses »).
   rsvp: {
