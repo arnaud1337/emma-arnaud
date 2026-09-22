@@ -169,15 +169,22 @@
         el.addEventListener("click", event => { event.preventDefault(); toast("La cagnotte sera bientôt disponible."); });
       }
     });
-    $$("[data-contact]").forEach(el => {
-      if (cfg.whatsappUrl) {
-        el.href = cfg.whatsappUrl;
+    $$("[data-whatsapp]").forEach(el => {
+      const person = (cfg.contacts || {})[el.dataset.whatsapp];
+      if (person && person.whatsapp) {
+        el.href = person.whatsapp;
         el.target = "_blank";
         el.rel = "noopener noreferrer";
-      } else if (cfg.contactEmail) {
-        el.href = "mailto:" + cfg.contactEmail;
       } else {
-        el.addEventListener("click", event => { event.preventDefault(); toast("Le contact WhatsApp sera bientôt disponible."); });
+        el.addEventListener("click", event => { event.preventDefault(); toast("Ce contact WhatsApp sera bientôt disponible."); });
+      }
+    });
+    $$("[data-email-both]").forEach(el => {
+      const addresses = Object.values(cfg.contacts || {}).map(p => p.email).filter(Boolean);
+      if (addresses.length) {
+        el.href = "mailto:" + addresses.join(",") + "?subject=" + encodeURIComponent("Mariage d’Emma & Arnaud");
+      } else {
+        el.addEventListener("click", event => { event.preventDefault(); toast("L’e-mail de contact sera bientôt disponible."); });
       }
     });
   }
