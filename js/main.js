@@ -9,7 +9,82 @@
   const cfg = window.SITE_CONFIG || {};
   const $ = (selector, root = document) => root.querySelector(selector);
   const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-  const siteUrl = cfg.siteUrl || location.href.split("#")[0];
+
+  /* ---------- Langue ---------- */
+  // La langue de la page est lue sur <html lang="…"> : "fr" (défaut) ou "en".
+  const lang = document.documentElement.lang === "en" ? "en" : "fr";
+
+  const MESSAGES = {
+    fr: {
+      menuOpen: "Ouvrir le menu",
+      menuClose: "Fermer le menu",
+      bigDay: "C’est le grand jour !",
+      thanks: "Merci d’avoir été des nôtres.",
+      icsFile: "mariage-emma-arnaud.ics",
+      giftSoon: "La cagnotte sera bientôt disponible.",
+      whatsappSoon: "Ce contact WhatsApp sera bientôt disponible.",
+      emailSoon: "L’e-mail de contact sera bientôt disponible.",
+      emailSubject: "Mariage d’Emma & Arnaud",
+      openMaps: "Ouvrir dans Maps",
+      linkCopied: "Lien copié.",
+      copyThis: "Copiez cette adresse : ",
+      rsvpSubject: "RSVP mariage",
+      errFirstName: "Merci d’indiquer votre prénom.",
+      errLastName: "Merci d’indiquer votre nom.",
+      errEmail: "Merci d’indiquer une adresse e-mail valide.",
+      errChoice: "Merci de choisir une réponse.",
+      errCompanionFirst: "Merci d’indiquer le prénom de votre accompagnant.",
+      errCompanionLast: "Merci d’indiquer le nom de votre accompagnant.",
+      errMoments: "Merci de sélectionner au moins un moment du week-end.",
+      sending: "Envoi de votre réponse…",
+      mailtoOpening: "Votre messagerie va s’ouvrir : il ne reste qu’à envoyer le message.",
+      notConfigured: "Le formulaire n’est pas encore configuré.",
+      sendError: "Une erreur est survenue. Merci de réessayer dans un instant.",
+      enlargePhoto: "Agrandir la photo "
+    },
+    en: {
+      menuOpen: "Open menu",
+      menuClose: "Close menu",
+      bigDay: "The big day is here!",
+      thanks: "Thank you for celebrating with us.",
+      icsFile: "wedding-emma-arnaud.ics",
+      giftSoon: "Our honeymoon fund will be available soon.",
+      whatsappSoon: "This WhatsApp contact will be available soon.",
+      emailSoon: "Our contact e-mail will be available soon.",
+      emailSubject: "Emma & Arnaud’s wedding",
+      openMaps: "Open in Maps",
+      linkCopied: "Link copied.",
+      copyThis: "Copy this address: ",
+      rsvpSubject: "Wedding RSVP",
+      errFirstName: "Please enter your first name.",
+      errLastName: "Please enter your last name.",
+      errEmail: "Please enter a valid e-mail address.",
+      errChoice: "Please choose an answer.",
+      errCompanionFirst: "Please enter your guest’s first name.",
+      errCompanionLast: "Please enter your guest’s last name.",
+      errMoments: "Please select at least one part of the weekend.",
+      sending: "Sending your reply…",
+      mailtoOpening: "Your e-mail app will open: just send the message.",
+      notConfigured: "The form is not set up yet.",
+      sendError: "Something went wrong. Please try again in a moment.",
+      enlargePhoto: "Enlarge photo "
+    }
+  };
+  const t = key => MESSAGES[lang][key];
+
+  // Les pages anglaises sont dans le dossier /en/ : les chemins d'images de config.js
+  // (ex. "assets/gallery/01.jpg") y sont précédés de "../" (voir data-root sur <html>).
+  const ROOT = document.documentElement.dataset.root || "";
+  const asset = src => (src && !/^([a-z]+:|\/)/i.test(src) ? ROOT + src : src);
+
+  // Dans config.js, un élément peut contenir une version anglaise : { …, en: { title: "…" } }.
+  const localize = item => (lang === "en" && item && item.en ? { ...item, ...item.en } : item);
+  const events = (cfg.events || []).map(localize);
+  const places = (cfg.places || []).map(localize);
+
+  // Le lien partagé (QR code, « Copier le lien ») pointe vers la version de la page affichée.
+  const baseUrl = cfg.siteUrl || location.href.split("#")[0];
+  const siteUrl = lang === "en" && cfg.siteUrl ? new URL("en/", cfg.siteUrl).href : baseUrl;
 
   /* ---------- Utilitaires ---------- */
 
@@ -40,7 +115,7 @@
     const setOpen = open => {
       menu.classList.toggle("is-open", open);
       button.setAttribute("aria-expanded", String(open));
-      button.setAttribute("aria-label", open ? "Fermer le menu" : "Ouvrir le menu");
+      button.setAttribute("aria-label", open ? t("menuClose") : t("menuOpen"));
       icon.setAttribute("href", open ? "#i-x" : "#i-menu");
     };
 
@@ -82,7 +157,7 @@
       if (diff <= 0) {
         clearInterval(timer);
         box.classList.add("countdown--done");
-        box.textContent = diff > -3 * 864e5 ? "C’est le grand jour !" : "Merci d’avoir été des nôtres.";
+        box.textContent = diff > -3 * 864e5 ? t("bigDay") : t("thanks");
         return;
       }
       days.textContent = Math.floor(diff / 864e5);
@@ -112,7 +187,7 @@
     const stamp = icsDate(new Date().toISOString());
     const host = location.hostname || "mariage";
     const lines = ["BEGIN:VCALENDAR", "VERSION:2.0", "PRODID:-//Emma et Arnaud//Mariage//FR", "CALSCALE:GREGORIAN", "METHOD:PUBLISH"];
-    (cfg.events || []).forEach(event => {
+    events.forEach(event => {
       lines.push(
         "BEGIN:VEVENT",
         `UID:${event.id}@${host}`,
@@ -132,7 +207,6 @@
   function initCalendar() {
     const google = $("#btn-google-cal");
     const ics = $("#btn-ics");
-    const events = cfg.events || [];
     if (!events.length) { $(".actions")?.setAttribute("hidden", ""); return; }
 
     google?.addEventListener("click", () => {
@@ -149,7 +223,7 @@
       const url = URL.createObjectURL(new Blob([buildIcs()], { type: "text/calendar;charset=utf-8" }));
       const link = document.createElement("a");
       link.href = url;
-      link.download = "mariage-emma-arnaud.ics";
+      link.download = t("icsFile");
       document.body.append(link);
       link.click();
       link.remove();
@@ -166,7 +240,7 @@
         el.target = "_blank";
         el.rel = "noopener noreferrer";
       } else {
-        el.addEventListener("click", event => { event.preventDefault(); toast("La cagnotte sera bientôt disponible."); });
+        el.addEventListener("click", event => { event.preventDefault(); toast(t("giftSoon")); });
       }
     });
     $$("[data-whatsapp]").forEach(el => {
@@ -176,15 +250,15 @@
         el.target = "_blank";
         el.rel = "noopener noreferrer";
       } else {
-        el.addEventListener("click", event => { event.preventDefault(); toast("Ce contact WhatsApp sera bientôt disponible."); });
+        el.addEventListener("click", event => { event.preventDefault(); toast(t("whatsappSoon")); });
       }
     });
     $$("[data-email-both]").forEach(el => {
       const addresses = Object.values(cfg.contacts || {}).map(p => p.email).filter(Boolean);
       if (addresses.length) {
-        el.href = "mailto:" + addresses.join(",") + "?subject=" + encodeURIComponent("Mariage d’Emma & Arnaud");
+        el.href = "mailto:" + addresses.join(",") + "?subject=" + encodeURIComponent(t("emailSubject"));
       } else {
-        el.addEventListener("click", event => { event.preventDefault(); toast("L’e-mail de contact sera bientôt disponible."); });
+        el.addEventListener("click", event => { event.preventDefault(); toast(t("emailSoon")); });
       }
     });
   }
@@ -207,7 +281,7 @@
       link.href = mapsUrl(place);
       link.target = "_blank";
       link.rel = "noopener noreferrer";
-      link.textContent = "Ouvrir dans Maps";
+      link.textContent = t("openMaps");
       item.append(name, address, document.createElement("br"), link);
       list.append(item);
     });
@@ -221,14 +295,13 @@
     link.href = mapsUrl(place);
     link.target = "_blank";
     link.rel = "noopener noreferrer";
-    link.textContent = "Ouvrir dans Maps";
+    link.textContent = t("openMaps");
     box.append(name, document.createElement("br"), document.createTextNode(place.address), document.createElement("br"), link);
     return box;
   }
 
   function initMap() {
     const element = $("#weekend-map");
-    const places = cfg.places || [];
     if (!element) return;
     renderPlacesList(places);
     if (!places.length) return;
@@ -278,8 +351,8 @@
     }
 
     $("#copy-link")?.addEventListener("click", async () => {
-      try { await navigator.clipboard.writeText(siteUrl); toast("Lien copié."); }
-      catch { toast("Copiez cette adresse : " + siteUrl); }
+      try { await navigator.clipboard.writeText(siteUrl); toast(t("linkCopied")); }
+      catch { toast(t("copyThis") + siteUrl); }
     });
   }
 
@@ -325,7 +398,7 @@
     }
     if (cfg.contactEmail) { // secours : on prépare un e-mail
       const body = Object.entries(data).filter(([, v]) => v).map(([k, v]) => `${k} : ${v}`).join("\n");
-      location.href = `mailto:${cfg.contactEmail}?subject=${encodeURIComponent("RSVP mariage")}&body=${encodeURIComponent(body)}`;
+      location.href = `mailto:${cfg.contactEmail}?subject=${encodeURIComponent(t("rsvpSubject"))}&body=${encodeURIComponent(body)}`;
       return "mailto";
     }
     throw new Error("no-endpoint");
@@ -363,17 +436,17 @@
     function validate(fd) {
       const value = name => String(fd.get(name) || "").trim();
       const errors = [];
-      if (!value("prenom")) errors.push(["prenom", "Merci d’indiquer votre prénom."]);
-      if (!value("nom")) errors.push(["nom", "Merci d’indiquer votre nom."]);
-      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value("email"))) errors.push(["email", "Merci d’indiquer une adresse e-mail valide."]);
-      if (!value("presence")) errors.push(["presence", "Merci de choisir une réponse."]);
+      if (!value("prenom")) errors.push(["prenom", t("errFirstName")]);
+      if (!value("nom")) errors.push(["nom", t("errLastName")]);
+      if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value("email"))) errors.push(["email", t("errEmail")]);
+      if (!value("presence")) errors.push(["presence", t("errChoice")]);
       if (value("presence") === "oui") {
-        if (!value("accompagne")) errors.push(["accompagne", "Merci de choisir une réponse."]);
+        if (!value("accompagne")) errors.push(["accompagne", t("errChoice")]);
         if (value("accompagne") === "oui") {
-          if (!value("accompagnant_prenom")) errors.push(["accompagnant_prenom", "Merci d’indiquer le prénom de votre accompagnant."]);
-          if (!value("accompagnant_nom")) errors.push(["accompagnant_nom", "Merci d’indiquer le nom de votre accompagnant."]);
+          if (!value("accompagnant_prenom")) errors.push(["accompagnant_prenom", t("errCompanionFirst")]);
+          if (!value("accompagnant_nom")) errors.push(["accompagnant_nom", t("errCompanionLast")]);
         }
-        if (!fd.getAll("moments").length) errors.push(["moments", "Merci de sélectionner au moins un moment du week-end."]);
+        if (!fd.getAll("moments").length) errors.push(["moments", t("errMoments")]);
       }
       return errors;
     }
@@ -425,11 +498,11 @@
       }
 
       submit.disabled = true;
-      status.textContent = "Envoi de votre réponse…";
+      status.textContent = t("sending");
       try {
         const result = await sendRsvp(buildPayload(fd));
         if (result === "mailto") {
-          status.textContent = "Votre messagerie va s’ouvrir : il ne reste qu’à envoyer le message.";
+          status.textContent = t("mailtoOpening");
         } else {
           form.reset();
           sync();
@@ -439,8 +512,8 @@
         }
       } catch (error) {
         status.textContent = error.message === "no-endpoint"
-          ? "Le formulaire n’est pas encore configuré."
-          : "Une erreur est survenue. Merci de réessayer dans un instant.";
+          ? t("notConfigured")
+          : t("sendError");
       } finally {
         submit.disabled = false;
       }
@@ -465,7 +538,7 @@
     const show = i => {
       index = (i + photos.length) % photos.length;
       const photo = photos[index];
-      big.src = photo.src;
+      big.src = asset(photo.src);
       big.alt = photo.alt || "";
       caption.textContent = photo.caption || photo.alt || "";
     };
@@ -474,9 +547,9 @@
       const button = document.createElement("button");
       button.type = "button";
       button.className = "gallery__item";
-      button.setAttribute("aria-label", `Agrandir la photo ${i + 1}` + (photo.alt ? ` : ${photo.alt}` : ""));
+      button.setAttribute("aria-label", t("enlargePhoto") + (i + 1) + (photo.alt ? ` : ${photo.alt}` : ""));
       const img = new Image();
-      img.src = photo.thumb || photo.src;
+      img.src = asset(photo.thumb || photo.src);
       img.alt = "";
       img.loading = "lazy";
       img.decoding = "async";

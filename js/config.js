@@ -35,6 +35,7 @@ window.SITE_CONFIG = {
 
   // Événements proposés à l'ajout au calendrier (heures de Paris, décalage +02:00 en été).
   // Les heures de fin sont des estimations : ajustez-les.
+  // Le bloc « en » contient la version anglaise, utilisée sur les pages /en/.
   events: [
     {
       id: "mariage-civil",
@@ -42,15 +43,24 @@ window.SITE_CONFIG = {
       start: "2027-07-30T15:00:00+02:00",
       end: "2027-07-30T16:30:00+02:00",
       location: "Mairie du 11e arrondissement de Paris, 12 place Léon-Blum, 75011 Paris",
-      description: "À l’issue de la cérémonie, départ dans l’après-midi vers Bransles et l’Orangerie du Moulin."
+      description: "À l’issue de la cérémonie, départ dans l’après-midi vers Bransles et l’Orangerie du Moulin.",
+      en: {
+        title: "Emma & Arnaud’s civil wedding",
+        location: "Paris 11th arrondissement town hall, 12 place Léon-Blum, 75011 Paris",
+        description: "After the ceremony, we head out in the afternoon to Bransles and L’Orangerie du Moulin."
+      }
     },
     {
       id: "diner-vendredi",
       title: "Dîner informel — Emma & Arnaud",
-      start: "2027-07-30T19:00:00+02:00",
+      start: "2027-07-30T19:30:00+02:00",
       end: "2027-07-30T23:00:00+02:00",
       location: "L’Orangerie du Moulin, 1 Moulin de Gros Lot, 77620 Bransles",
-      description: "Dîner informel à l’Orangerie du Moulin, à partir de 19h00."
+      description: "Dîner informel à l’Orangerie du Moulin, à partir de 19h30.",
+      en: {
+        title: "Informal dinner — Emma & Arnaud",
+        description: "Informal dinner at L’Orangerie du Moulin, from 7:30 pm."
+      }
     },
     {
       id: "mariage",
@@ -58,7 +68,11 @@ window.SITE_CONFIG = {
       start: "2027-07-31T18:00:00+02:00",
       end: "2027-08-01T02:00:00+02:00",
       location: "L’Orangerie du Moulin, 1 Moulin de Gros Lot, 77620 Bransles",
-      description: "Cocktail à 18h00. Dîner à 20h00. Soirée à partir de 23h00."
+      description: "Cocktail à 18h00. Dîner à 20h00. Soirée à partir de 23h00.",
+      en: {
+        title: "Emma & Arnaud’s wedding",
+        description: "Drinks at 6:00 pm. Dinner at 8:00 pm. Party from 11:00 pm."
+      }
     },
     {
       id: "brunch",
@@ -66,7 +80,11 @@ window.SITE_CONFIG = {
       start: "2027-08-01T11:30:00+02:00",
       end: "2027-08-01T14:30:00+02:00",
       location: "L’Orangerie du Moulin, 1 Moulin de Gros Lot, 77620 Bransles",
-      description: "Après une courte — ou peut-être très courte — nuit, brunch à partir de 11h30."
+      description: "Après une courte — ou peut-être très courte — nuit, brunch à partir de 11h30.",
+      en: {
+        title: "Emma & Arnaud’s brunch",
+        description: "After a short — or perhaps very short — night, brunch from 11:30 am."
+      }
     }
   ],
 
@@ -74,11 +92,11 @@ window.SITE_CONFIG = {
   // Coordonnées vérifiées via vos liens Google Maps, sauf mention contraire.
   // Pour corriger un pin : clic droit sur le lieu dans Google Maps → copier les coordonnées.
   places: [
-    { group: "weekend", name: "Mairie du 11e arrondissement de Paris", address: "12 place Léon-Blum, 75011 Paris", lat: 48.858641, lng: 2.379184 },
+    { group: "weekend", name: "Mairie du 11e arrondissement de Paris", address: "12 place Léon-Blum, 75011 Paris", lat: 48.858641, lng: 2.379184, en: { name: "Paris 11th arrondissement town hall" } },
     { group: "weekend", name: "L’Orangerie du Moulin", address: "1 Moulin de Gros Lot, 77620 Bransles", lat: 48.139665, lng: 2.803084 },
     { group: "lodging", name: "Logis Hôtel de l’Abbaye", address: "1 rue de la Prairie de l’Étang, 45210 Ferrières-en-Gâtinais", lat: 48.085824, lng: 2.789567 },
     { group: "lodging", name: "Domaine de Vaugouard — Château & Golf", address: "Chemin des Bois, 45210 Fontenay-sur-Loing", lat: 48.068287, lng: 2.773953 },
-    { group: "lodging", name: "Le Danica — Cabanes insolites", address: "Chemin du Puits, 45680 Dordives", lat: 48.151402, lng: 2.775657 }
+    { group: "lodging", name: "Le Danica — Cabanes insolites", address: "Chemin du Puits, 45680 Dordives", lat: 48.151402, lng: 2.775657, en: { name: "Le Danica — Treehouses & cabins" } }
   ],
 
   // Galerie (à remplir après le mariage). Tant que la liste est vide, le message

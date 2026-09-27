@@ -1,0 +1,623 @@
+<!doctype html>
+<html lang="en" data-root="../">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Emma &amp; Arnaud — 31 July 2027</title>
+  <meta name="description" content="Emma &amp; Arnaud are getting married from 30 July to 1 August 2027. Weekend schedule, getting there, accommodation and RSVP.">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="alternate" hreflang="fr" href="https://emma-arnaud.fr/">
+  <link rel="alternate" hreflang="en" href="https://emma-arnaud.fr/en/">
+  <!-- Langue : mémorise le choix de l'anglais (voir js/lang.js) -->
+  <script src="../js/lang.js"></script>
+  <meta name="theme-color" content="#304038">
+  <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml">
+
+  <!-- Aperçu du lien (WhatsApp, iMessage…). -->
+  <meta property="og:type" content="website">
+  <meta property="og:locale" content="en_GB">
+  <meta property="og:title" content="Emma &amp; Arnaud are getting married!">
+  <meta property="og:description" content="31 July 2027 · L’Orangerie du Moulin · Seine-et-Marne, France">
+  <meta property="og:url" content="https://emma-arnaud.fr/en/">
+  <meta property="og:image" content="https://emma-arnaud.fr/assets/img/og.jpg">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+  <link rel="stylesheet" href="../css/style.css">
+  <script>document.documentElement.classList.add("js");</script>
+  <script>
+    // Verrou d'accès : ajouté avant le rendu pour éviter tout affichage furtif du contenu.
+    (function () {
+      try {
+        if (window.localStorage.getItem("eaGateUnlocked") !== "1") {
+          document.documentElement.classList.add("gate-locked");
+        }
+      } catch (e) {
+        document.documentElement.classList.add("gate-locked");
+      }
+    })();
+  </script>
+</head>
+<body>
+
+  <!-- ============ Verrou d'accès ============ -->
+  <div id="gate-overlay" role="dialog" aria-modal="true" aria-labelledby="gate-title">
+    <form id="gate-form" class="gate-card" autocomplete="off">
+      <p class="gate-card__eyebrow">Emma &amp; Arnaud</p>
+      <h1 id="gate-title" class="gate-card__title">Private access</h1>
+      <p class="gate-card__text">This website is for our guests. Please enter the password you were given.</p>
+      <label class="gate-card__label" for="gate-password">Password</label>
+      <input class="gate-card__input" type="password" id="gate-password" name="gate-password" autocomplete="off" autocapitalize="off" spellcheck="false" required>
+      <p class="gate-card__error" id="gate-error" role="alert" hidden>Incorrect password. Please try again.</p>
+      <button class="gate-card__submit" type="submit">Enter</button>
+      <p class="gate-card__hint">You should only need to enter it once per device.</p>
+    </form>
+  </div>
+
+  <!-- Icônes (Lucide, licence ISC) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+    <symbol id="i-menu" viewBox="0 0 24 24"><line x1="4" x2="20" y1="12" y2="12"/><line x1="4" x2="20" y1="6" y2="6"/><line x1="4" x2="20" y1="18" y2="18"/></symbol>
+    <symbol id="i-x" viewBox="0 0 24 24"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></symbol>
+    <symbol id="i-plus" viewBox="0 0 24 24"><path d="M5 12h14"/><path d="M12 5v14"/></symbol>
+    <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></symbol>
+    <symbol id="i-chevron-left" viewBox="0 0 24 24"><path d="m15 18-6-6 6-6"/></symbol>
+    <symbol id="i-chevron-right" viewBox="0 0 24 24"><path d="m9 18 6-6-6-6"/></symbol>
+    <symbol id="i-calendar-plus" viewBox="0 0 24 24"><path d="M8 2v4"/><path d="M16 2v4"/><path d="M21 13V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h8"/><path d="M3 10h18"/><path d="M16 19h6"/><path d="M19 16v6"/></symbol>
+    <symbol id="i-download" viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" x2="12" y1="15" y2="3"/></symbol>
+  </svg>
+
+  <a class="skip-link" href="#contenu">Skip to content</a>
+
+  <!-- ============ En-tête ============ -->
+  <header class="site-header">
+    <div class="site-header__bar">
+      <a class="logo" href="#accueil" aria-label="Back to the top">E&amp;A</a>
+
+      <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+        <ul>
+          <li><a href="#accueil">Home</a></li>
+          <li><a href="#bienvenue">Welcome</a></li>
+          <li><a href="#weekend">The weekend</a></li>
+          <li><a href="#infos">Information</a></li>
+          <li><a href="#hebergements">Where to stay</a></li>
+          <li><a href="#region">The area</a></li>
+          <li><a href="#rsvp">RSVP</a></li>
+          <li><a href="#voyage">Honeymoon</a></li>
+          <li><a href="#galerie">Gallery</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Langue / Language">
+          <a href="../" lang="fr" hreflang="fr" data-lang-link="fr">FR</a>
+          <a href="./" lang="en" hreflang="en" aria-current="true" data-lang-link="en">EN</a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Le contenu de ce menu est copié depuis la navigation principale par main.js -->
+    <nav class="mobile-menu" id="mobile-menu" aria-label="Mobile navigation">
+      <div><ul></ul></div>
+    </nav>
+  </header>
+
+  <main id="contenu">
+
+    <!-- ============ Accueil ============ -->
+    <section class="hero" id="accueil">
+      <div class="hero__fallback" aria-hidden="true"></div>
+      <picture class="hero__media">
+        <source media="(max-width: 767px)" srcset="../assets/img/hero-mobile.jpg">
+        <img src="../assets/img/hero.jpg" alt="" fetchpriority="high">
+      </picture>
+      <div class="hero__overlay" aria-hidden="true"></div>
+
+      <div class="hero__content">
+        <h1 class="hero__title">Emma &amp; Arnaud</h1>
+        <p class="hero__lead">are getting married!</p>
+
+        <p class="hero__meta">
+          <time datetime="2027-07-31">31 July 2027</time>
+          <span>L’Orangerie du Moulin · Seine-et-Marne, France</span>
+        </p>
+
+        <div class="countdown" id="countdown" role="timer" aria-label="Countdown to the wedding">
+          <div class="countdown__item"><span class="countdown__num" id="cd-days">—</span><span class="countdown__label">days</span></div>
+          <div class="countdown__item"><span class="countdown__num" id="cd-hours">—</span><span class="countdown__label">hours</span></div>
+          <div class="countdown__item"><span class="countdown__num" id="cd-minutes">—</span><span class="countdown__label">minutes</span></div>
+        </div>
+
+        <a class="btn btn--light" href="#bienvenue">Discover our wedding</a>
+      </div>
+    </section>
+
+    <!-- ============ Bienvenue ============ -->
+    <section class="section" id="bienvenue">
+      <div class="container welcome">
+        <div class="reveal">
+          <h2 class="title">Welcome</h2>
+          <div class="copy stack">
+            <p>We are so happy to have you with us for this very special weekend.</p>
+            <p>After almost ten years of building our life together, we are delighted to bring you all together to celebrate our wedding in a place that is dear to us, in our beautiful Île-de-France region.</p>
+            <p>We imagined these few days as a little pause to share with the people who matter most to us: a little ceremony, a lot of fun, music, long tables, laughter and, we hope, a few memories we will treasure for a long time.</p>
+            <p>The wedding will begin in Paris on Friday, then continue on Saturday and Sunday at L’Orangerie du Moulin, in Bransles.</p>
+            <p>We created this website so you can easily find everything you need to plan your trip: the weekend schedule, how to get there, where to stay, good addresses and a few ideas for extending your stay in the area.</p>
+            <p>We can’t wait to see you and share all of this with you.</p>
+            <p class="signature">See you very soon,<br>Emma &amp; Arnaud</p>
+          </div>
+        </div>
+
+        <div class="photos reveal">
+          <figure class="photos__main"><img src="../assets/img/photomaton-2.jpg" alt="Emma and Arnaud wearing sunglasses, in a photo booth" loading="lazy"></figure>
+          <figure><img src="../assets/img/photomaton-1.jpg" alt="Emma and Arnaud, all smiles, in a photo booth" loading="lazy"></figure>
+          <figure><img src="../assets/img/photomaton-3.jpg" alt="Emma and Arnaud cheek to cheek, in a photo booth" loading="lazy"></figure>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Le week-end ============ -->
+    <section class="section section--linen" id="weekend">
+      <div class="container container--mid">
+        <p class="kicker">30 July — 1 August 2027</p>
+        <h2 class="title">The weekend</h2>
+
+        <div class="days">
+          <article class="day reveal">
+            <h3 class="day__date">Friday 30 July 2027</h3>
+            <ol class="timeline">
+              <li class="timeline__item">
+                <p class="timeline__time"><time datetime="15:00">3:00 pm</time></p>
+                <p class="timeline__title">Civil wedding</p>
+                <p class="timeline__note">Paris 11th arrondissement town hall</p>
+              </li>
+              <li class="timeline__item">
+                <p class="timeline__note">After the ceremony, we head out in the afternoon to L’Orangerie du Moulin · Bransles · Seine-et-Marne</p>
+              </li>
+              <li class="timeline__item">
+                <p class="timeline__time"><time datetime="19:30">7:30 pm</time></p>
+                <p class="timeline__title">Informal dinner</p>
+                <p class="timeline__note">L’Orangerie du Moulin, Bransles, Seine-et-Marne</p>
+              </li>
+            </ol>
+          </article>
+
+          <article class="day reveal">
+            <h3 class="day__date">Saturday 31 July 2027</h3>
+            <ol class="timeline">
+              <li class="timeline__item">
+                <p class="timeline__time">Morning</p>
+                <p class="timeline__title">Optional cultural visit</p>
+                <p class="timeline__note">We would love to show you a cultural site that has left a special mark on us — more details to come!</p>
+              </li>
+              <li class="timeline__item">
+                <p class="timeline__time">Afternoon</p>
+                <p class="timeline__title">Wedding ceremony</p>
+                <p class="timeline__note"><em>The time and place of the ceremony will be announced soon.</em></p>
+              </li>
+              <li class="timeline__item">
+                <p class="timeline__time"><time datetime="18:00">6:00 pm</time></p>
+                <p class="timeline__title">Drinks reception</p>
+                <p class="timeline__note">L’Orangerie du Moulin, Bransles, Seine-et-Marne</p>
+              </li>
+              <li class="timeline__item">
+                <p class="timeline__time"><time datetime="20:00">8:00 pm</time></p>
+                <p class="timeline__title">Dinner, then party</p>
+              </li>
+            </ol>
+          </article>
+
+          <article class="day reveal">
+            <h3 class="day__date">Sunday 1 August 2027</h3>
+            <ol class="timeline">
+              <li class="timeline__item">
+                <p class="timeline__time">From <time datetime="11:30">11:30 am</time></p>
+                <p class="timeline__title">Brunch</p>
+                <p class="timeline__note">L’Orangerie du Moulin · Bransles · Seine-et-Marne</p>
+              </li>
+              <li class="timeline__item">
+                <p class="timeline__note">After a short — or perhaps very short — night, we will get together over brunch and let the weekend wind down gently.</p>
+              </li>
+            </ol>
+          </article>
+        </div>
+
+        <div class="actions">
+          <button class="btn btn--outline" type="button" id="btn-google-cal">
+            <svg class="icon" aria-hidden="true"><use href="#i-calendar-plus"/></svg>
+            Add to Google Calendar
+          </button>
+          <button class="btn btn--outline" type="button" id="btn-ics">
+            <svg class="icon" aria-hidden="true"><use href="#i-download"/></svg>
+            Apple Calendar / Outlook (.ics)
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Informations pratiques ============ -->
+    <section class="section" id="infos">
+      <div class="container container--mid infos">
+        <div>
+          <p class="kicker">Good to know</p>
+          <h2 class="title">Practical information</h2>
+          <figure class="side-photo">
+            <img src="../assets/img/infos-robe.jpg" alt="Wedding dress hanging on an old door, in a garden full of flowers" loading="lazy">
+            <figcaption> </figcaption>
+          </figure>
+        </div>
+
+        <div class="faqs">
+          <details class="faq" open>
+            <summary>How do I get to L’Orangerie du Moulin? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__body">
+              <p>We recommend coming by car, so you can make the most of the weekend and easily reach your accommodation. From Paris, allow about 1 hr 15 min via the A6 motorway.</p>
+              <p>You can also come from Paris by train (Transilien line R from Gare de Lyon to Dordives station, then a 15-minute bike ride or a 50-minute walk).</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>Where should I stay? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__body">
+              <p>We are planning to book holiday cottages (<em>gîtes</em>) near the wedding venue. If you would like us to help you arrange your accommodation, just get in touch. You are also welcome to book your own accommodation directly.</p>
+              <a class="btn btn--outline" href="#hebergements">Plan your stay: where to sleep?</a>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>Is there a dress code? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__body">
+              <p>We would like the wedding to be elegant but relaxed, celebrating colourful, country-style outfits. Above all, wear something you feel good in — and that you’ll want to dance in until the very end of the night!</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>Will there be parking? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__body">
+              <p>Yes, secure parking will be available, with an attendant on site during the evening.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>What about dietary preferences and requirements? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__body">
+              <p>You can let us know about any allergies or dietary requirements in the RSVP form.</p>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>Can we give you a gift? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__body">
+              <p>Having you with us will be the most wonderful gift. But if you would still like to contribute to our honeymoon, you will be able to do so through our online honeymoon fund.</p>
+              <a class="btn btn--outline" href="#voyage" data-gift>Contribute to our honeymoon</a>
+            </div>
+          </details>
+
+          <details class="faq">
+            <summary>How do I get back to my accommodation after the party on Saturday? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__body">
+              <p>So that you can enjoy the party without a care, we are planning a shuttle service to take you back to your accommodation nearby. Just let us know if you would like to use it!</p>
+            </div>
+          </details>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ Hébergements ============ -->
+    <section class="section section--forest" id="hebergements">
+      <div class="container">
+        <div class="split">
+          <div>
+            <p class="kicker">Plan your stay</p>
+            <h2 class="title">Where to stay?</h2>
+            <figure class="side-photo">
+              <img src="../assets/img/bransles-autrefois.jpg" alt="Old postcard of the Moulin de Gros-Lot in Bransles, with two men in a boat on the water" loading="lazy">
+              <figcaption> </figcaption>
+            </figure>
+          </div>
+          <div class="copy stack">
+            <p>Because we want you to make the most of this lovely weekend, we invite you to stay close to L’Orangerie du Moulin.</p>
+            <p>Below are a few places in the area that we like and recommend. You are of course free to book directly with them, or to find the accommodation that suits you best on Airbnb, Booking.com or among the many holiday cottages and B&amp;Bs nearby.</p>
+            <p>You will find our favourites below, as well as a more complete list of places to stay near the venue, for groups of all sizes. If you would like help finding or booking accommodation, write to us: <a class="link link--light" href="#" data-whatsapp="emma">Emma</a> · <a class="link link--light" href="#" data-whatsapp="arnaud">Arnaud</a> · <a class="link link--light" href="#" data-email-both>by e-mail</a> — we will be very happy to help you plan your stay.</p>
+          </div>
+        </div>
+
+        <div class="cards cards--4">
+          <article class="card reveal">
+            <div class="card__media"><img src="../assets/img/abbaye.jpg" alt="Old abbey next to a lush forest" loading="lazy"></div>
+            <div class="card__body">
+              <h3 class="card__title">Logis Hôtel de l’Abbaye ***</h3>
+              <address class="card__text">
+                1 rue de la Prairie de l’Étang<br>45210 Ferrières-en-Gâtinais<br>
+                <a class="link" href="tel:+33238965312">+33 2 38 96 53 12</a>
+              </address>
+              <a class="btn btn--outline" href="https://www.hotel-abbaye.fr/" target="_blank" rel="noopener noreferrer">Visit the website</a>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card__media"><img src="../assets/img/vaugouard.jpg" alt="Entrance to a historic manor house with well-kept gardens" loading="lazy"></div>
+            <div class="card__body">
+              <h3 class="card__title">Domaine de Vaugouard — Château &amp; Golf ****</h3>
+              <address class="card__text">
+                Chemin des Bois<br>45210 Fontenay-sur-Loing<br>
+                <a class="link" href="tel:+33238897900">+33 2 38 89 79 00</a>
+              </address>
+              <a class="btn btn--outline" href="https://lamaisonyounan.com/fr/domaine-de-vaugouard" target="_blank" rel="noopener noreferrer">Visit the website</a>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card__media"><img src="../assets/img/danica.jpg" alt="Cosy wooden cabin among the trees" loading="lazy"></div>
+            <div class="card__body">
+              <h3 class="card__title">Le Danica — Treehouses &amp; cabins</h3>
+              <address class="card__text">
+                7 chemin du Puits<br>45680 Dordives<br>
+                <a class="link" href="tel:+33685684689">+33 6 85 68 46 89</a>
+              </address>
+              <a class="btn btn--outline" href="https://www.ledanica.com/" target="_blank" rel="noopener noreferrer">Discover the cabins</a>
+            </div>
+          </article>
+
+          <article class="card reveal">
+            <div class="card__media"><img src="../assets/img/voyage-reflet.jpg" alt="Reflection of L’Orangerie du Moulin in the water, beneath the willows" loading="lazy"></div>
+            <div class="card__body">
+              <h3 class="card__title">Holiday cottages nearby</h3>
+              <p class="card__text">More holiday cottages (<em>gîtes</em>) and B&amp;Bs in the area, for groups of all sizes, recommended by L’Orangerie du Moulin.</p>
+              <a class="btn btn--outline" href="hebergements-liste.html">See the full list</a>
+            </div>
+          </article>
+        </div>
+
+        <div class="map-block">
+          <div class="map-panel">
+            <div id="weekend-map" role="region" aria-label="Interactive map of the weekend’s locations"></div>
+            <div class="map-legend">
+              <p class="map-legend__title">Weekend landmarks</p>
+              <ul>
+                <li><i class="dot dot--weekend"></i>Weekend</li>
+                <li><i class="dot dot--lodging"></i>Accommodation</li>
+              </ul>
+            </div>
+          </div>
+          <aside class="places">
+            <p class="kicker">Places</p>
+            <ul id="places-list"></ul>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ La région ============ -->
+    <section class="section" id="region">
+      <div class="container">
+        <div class="intro">
+          <p class="kicker">A few well-chosen detours</p>
+          <h2 class="title">Extend your stay</h2>
+          <div class="copy stack">
+            <p>If you would like to make the most of your trip to get to know the area a little better, you are in the right place.</p>
+            <p>With its forests, characterful villages, châteaux and pretty riverside towns, the south of Île-de-France and the area around Bransles have more than enough to fill a long weekend.</p>
+          </div>
+        </div>
+
+        <div class="cards cards--4">
+          <article class="card reveal">
+            <div class="card__media card__media--short"><img src="https://images.pexels.com/photos/17441189/pexels-photo-17441189.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=640&amp;q=82" alt="View of the Château de Fontainebleau under a blue sky" loading="lazy"></div>
+            <div class="card__body"><h3 class="card__title">Château de Fontainebleau</h3><p class="card__text">A heritage outing well worth considering, combining architecture, gardens and history.</p></div>
+          </article>
+          <article class="card reveal">
+            <div class="card__media card__media--short"><img src="https://images.pexels.com/photos/28437308/pexels-photo-28437308.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=640&amp;q=82" alt="Forest path lined with tall trees" loading="lazy"></div>
+            <div class="card__body"><h3 class="card__title">Fontainebleau Forest</h3><p class="card__text">For walking, breathing deeply and enjoying some time surrounded by nature.</p></div>
+          </article>
+          <article class="card reveal">
+            <div class="card__media card__media--short"><img src="https://images.pexels.com/photos/29975064/pexels-photo-29975064.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=640&amp;q=82" alt="Historic church surrounded by trees in Moret-Loing-et-Orvanne" loading="lazy"></div>
+            <div class="card__body"><h3 class="card__title">Moret-sur-Loing</h3><p class="card__text">A riverside stop, to explore at a leisurely pace.</p></div>
+          </article>
+          <article class="card reveal">
+            <div class="card__media card__media--short"><img src="https://images.pexels.com/photos/32548606/pexels-photo-32548606.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=640&amp;q=82" alt="Stone houses on a quiet street in a French village" loading="lazy"></div>
+            <div class="card__body"><h3 class="card__title">Barbizon</h3><p class="card__text">A characterful artists’ village to add to your walks as you please.</p></div>
+          </article>
+          <article class="card reveal">
+            <div class="card__media card__media--short"><img src="https://images.pexels.com/photos/30251328/pexels-photo-30251328.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=640&amp;q=82" alt="Charming street in a historic stone village" loading="lazy"></div>
+            <div class="card__body"><h3 class="card__title">Château-Landon</h3><p class="card__text">Old streets and a real village atmosphere to discover.</p></div>
+          </article>
+          <article class="card reveal">
+            <div class="card__media card__media--short"><img src="https://images.pexels.com/photos/28540745/pexels-photo-28540745.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=640&amp;q=82" alt="View of a historic town on the riverbank" loading="lazy"></div>
+            <div class="card__body"><h3 class="card__title">Nemours</h3><p class="card__text">A nearby town rich in heritage, to explore at your own pace.</p></div>
+          </article>
+          <article class="card reveal">
+            <div class="card__media card__media--short"><img src="https://images.pexels.com/photos/27924070/pexels-photo-27924070.jpeg?auto=compress&amp;cs=tinysrgb&amp;fit=crop&amp;w=640&amp;q=82" alt="Boat on a canal lined with greenery, with a bridge" loading="lazy"></div>
+            <div class="card__body"><h3 class="card__title">Loing Canal</h3><p class="card__text">An idea for a peaceful stroll along the water.</p></div>
+          </article>
+          <article class="card reveal">
+            <div class="card__media card__media--short"><img src="../assets/img/rosa-bonheur.jpg" alt="Rosa Bonheur’s studio, with her paintings, piano and taxidermy animals" loading="lazy"></div>
+            <div class="card__body"><h3 class="card__title">Château de Rosa Bonheur</h3><p class="card__text">Visit, by reservation, the home, studio and works of the artist Rosa Bonheur.</p></div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ RSVP ============ -->
+    <section class="section section--linen" id="rsvp">
+      <div class="container container--mid rsvp">
+        <div>
+          <p class="kicker">Kindly reply</p>
+          <h2 class="title">Will you join us?</h2>
+          <div class="copy stack">
+            <p>We very much hope you will be able to join us for all or part of this weekend.</p>
+            <p>Please let us know your answer using the form below.</p>
+            <p class="note">Your answers will be saved to help us prepare the weekend.</p>
+            <p class="note">A question before you reply? Message us on WhatsApp: <a class="link" href="#" data-whatsapp="emma">Emma</a> · <a class="link" href="#" data-whatsapp="arnaud">Arnaud</a> — or <a class="link" href="#" data-email-both>by e-mail</a>.</p>
+          </div>
+        </div>
+
+        <form class="form" id="rsvp-form" novalidate>
+          <div class="form__grid">
+            <div class="field">
+              <label for="prenom">First name</label>
+              <input id="prenom" name="prenom" type="text" autocomplete="given-name" required aria-describedby="prenom-error">
+              <p class="field__error" id="prenom-error"></p>
+            </div>
+            <div class="field">
+              <label for="nom">Last name</label>
+              <input id="nom" name="nom" type="text" autocomplete="family-name" required aria-describedby="nom-error">
+              <p class="field__error" id="nom-error"></p>
+            </div>
+            <div class="field form__wide">
+              <label for="email">E-mail address</label>
+              <input id="email" name="email" type="email" autocomplete="email" inputmode="email" required aria-describedby="email-error">
+              <p class="field__error" id="email-error"></p>
+            </div>
+          </div>
+
+          <!-- Les valeurs (oui / non, vendredi…) restent en français : elles alimentent le même tableau Google Sheets. -->
+          <fieldset aria-describedby="presence-error">
+            <legend>Will you join us?</legend>
+            <label class="choice"><input type="radio" name="presence" value="oui"><span>Yes, with great pleasure</span></label>
+            <label class="choice"><input type="radio" name="presence" value="non"><span>No, unfortunately I won’t be able to come</span></label>
+            <p class="field__error" id="presence-error"></p>
+          </fieldset>
+
+          <div class="form__more" id="rsvp-attending" hidden>
+            <fieldset aria-describedby="accompagne-error">
+              <legend>Will you be bringing a guest?</legend>
+              <div class="choice-row">
+                <label class="choice"><input type="radio" name="accompagne" value="oui"><span>Yes</span></label>
+                <label class="choice"><input type="radio" name="accompagne" value="non"><span>No</span></label>
+              </div>
+              <p class="field__error" id="accompagne-error"></p>
+            </fieldset>
+
+            <div class="form__grid" id="companion-names" hidden>
+              <div class="field">
+                <label for="accompagnant_prenom">Your guest’s first name</label>
+                <input id="accompagnant_prenom" name="accompagnant_prenom" type="text" aria-describedby="accompagnant_prenom-error">
+                <p class="field__error" id="accompagnant_prenom-error"></p>
+              </div>
+              <div class="field">
+                <label for="accompagnant_nom">Your guest’s last name</label>
+                <input id="accompagnant_nom" name="accompagnant_nom" type="text" aria-describedby="accompagnant_nom-error">
+                <p class="field__error" id="accompagnant_nom-error"></p>
+              </div>
+            </div>
+
+            <fieldset aria-describedby="moments-error">
+              <legend>Which parts of the weekend will you attend?</legend>
+              <label class="choice"><input type="checkbox" name="moments" value="vendredi"><span>Friday · civil wedding in Paris and informal dinner at L’Orangerie</span></label>
+              <label class="choice"><input type="checkbox" name="moments" value="visite"><span>Saturday morning · cultural visit</span></label>
+              <label class="choice"><input type="checkbox" name="moments" value="samedi"><span>Saturday · ceremony, dinner and party</span></label>
+              <label class="choice"><input type="checkbox" name="moments" value="brunch"><span>Sunday · brunch</span></label>
+              <p class="field__error" id="moments-error"></p>
+            </fieldset>
+
+            <label class="choice"><input type="checkbox" name="navette" value="oui"><span>I would like to use the shuttle after the party on Saturday</span></label>
+
+            <div class="field">
+              <label for="allergies">Allergies / dietary requirements</label>
+              <textarea id="allergies" name="allergies" rows="3"></textarea>
+            </div>
+          </div>
+
+          <div class="field">
+            <label for="message">Comment or message</label>
+            <textarea id="message" name="message" rows="3"></textarea>
+          </div>
+
+          <!-- Champ piège anti-spam : invisible pour les humains -->
+          <div class="hp" aria-hidden="true">
+            <label>Do not fill in <input type="text" name="website" tabindex="-1" autocomplete="off"></label>
+          </div>
+
+          <div class="form__submit">
+            <button class="btn btn--solid" id="rsvp-submit" type="submit">Send my reply</button>
+            <p class="form__status" id="rsvp-status" role="status" aria-live="polite"></p>
+          </div>
+
+          <div class="success" id="rsvp-success" hidden>
+            <p class="success__title">Thank you so much.</p>
+            <p>Your reply has been saved. We can’t wait to see you.</p>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <!-- ============ Voyage de noces ============ -->
+    <section class="section" id="voyage">
+      <div class="container container--narrow center">
+        <figure class="voyage-photo">
+          <img src="../assets/img/voyage-reflet.jpg" alt="Reflection of L’Orangerie du Moulin in the water, beneath the willows" loading="lazy">
+        </figure>
+        <p class="kicker">A little something, if you wish</p>
+        <h2 class="title">Our honeymoon</h2>
+        <div class="copy stack">
+          <p>Having you with us is the most wonderful gift.</p>
+          <p>More than anything, we want to share this day and this weekend with you.</p>
+          <p>But if you would still like to give us something, we have chosen memories over things, and our gift fund will go towards our honeymoon.</p>
+          <p>Every contribution will help us add a new stop, a dinner, a night somewhere beautiful or simply a little moment for the two of us that we will remember for a long time.</p>
+          <p>Thank you so much for your generosity.</p>
+        </div>
+        <a class="btn btn--solid" href="#voyage" data-gift>Contribute to our honeymoon</a>
+      </div>
+    </section>
+
+    <!-- ============ Galerie ============ -->
+    <section class="section section--forest" id="galerie">
+      <div class="container container--mid">
+        <p class="kicker">After the big day</p>
+        <h2 class="title">Gallery</h2>
+
+        <div class="gallery-empty" id="gallery-empty">
+          <p class="gallery-empty__title">Our memories are coming soon…</p>
+          <p>This gallery will open after the wedding, with photos from the weekend to browse, share and treasure.</p>
+        </div>
+        <div class="gallery" id="gallery-grid" hidden aria-label="Wedding gallery"></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ============ Pied de page ============ -->
+  <footer class="site-footer">
+    <div class="site-footer__inner">
+      <div>
+        <p class="site-footer__names">Emma &amp; Arnaud</p>
+        <p class="site-footer__meta">31 July 2027 · L’Orangerie du Moulin · Bransles</p>
+      </div>
+      <div class="share">
+        <div id="qr-block">
+          <p class="kicker">Share the website</p>
+          <div id="qrcode" class="qr" role="img" aria-label="QR code linking to this website"></div>
+        </div>
+        <button class="btn btn--ghost-light" id="copy-link" type="button">Copy the link</button>
+      </div>
+    </div>
+  </footer>
+
+  <button class="back-top" id="back-top" type="button" aria-label="Back to top">
+    <svg class="icon" aria-hidden="true"><use href="#i-arrow-up"/></svg>
+  </button>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <!-- Visionneuse photo -->
+  <dialog class="lightbox" id="lightbox" aria-label="Photo viewer">
+    <div class="lightbox__stage">
+      <button class="lightbox__btn lightbox__close" id="lightbox-close" type="button" aria-label="Close the viewer"><svg class="icon" aria-hidden="true"><use href="#i-x"/></svg></button>
+      <button class="lightbox__btn lightbox__prev" id="lightbox-prev" type="button" aria-label="Previous photo"><svg class="icon" aria-hidden="true"><use href="#i-chevron-left"/></svg></button>
+      <figure class="lightbox__figure">
+        <img id="lightbox-img" alt="">
+        <figcaption id="lightbox-caption"></figcaption>
+      </figure>
+      <button class="lightbox__btn lightbox__next" id="lightbox-next" type="button" aria-label="Next photo"><svg class="icon" aria-hidden="true"><use href="#i-chevron-right"/></svg></button>
+    </div>
+  </dialog>
+
+  <script src="../js/gate.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js" defer></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js" defer></script>
+  <script src="../js/config.js" defer></script>
+  <script src="../js/main.js" defer></script>
+</body>
+</html>

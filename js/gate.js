@@ -21,6 +21,11 @@
   var EXPECTED_HASH = "4419c07588b7aa80658eeffee32e9ad2aee30ca9de98ffa96a17cbe171e2a726";
   var STORAGE_KEY = "eaGateUnlocked";
 
+  // Messages affichés selon la langue de la page (<html lang="fr"> ou "en").
+  var EN = document.documentElement.lang === "en";
+  var MSG_WRONG = EN ? "Incorrect password. Please try again." : "Mot de passe incorrect. Réessayez.";
+  var MSG_EMPTY = EN ? "Please enter the password." : "Merci de saisir le mot de passe.";
+
   var root = document.documentElement;
   var overlay = document.getElementById("gate-overlay");
   var form = document.getElementById("gate-form");
@@ -61,7 +66,7 @@
   }
 
   function showError(message) {
-    error.textContent = message || "Mot de passe incorrect. Réessayez.";
+    error.textContent = message || MSG_WRONG;
     error.hidden = false;
     form.classList.add("gate-card--shake");
     window.setTimeout(function () {
@@ -91,7 +96,7 @@
 
     var typed = (input.value || "").trim().toLowerCase();
     if (!typed) {
-      showError("Merci de saisir le mot de passe.");
+      showError(MSG_EMPTY);
       return;
     }
 

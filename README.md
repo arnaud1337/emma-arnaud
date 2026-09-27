@@ -7,11 +7,15 @@ il ne reste que quelques points listés en bas de ce fichier.
 ## Structure
 
 ```
-index.html          Contenu et textes du site
+index.html          Contenu et textes du site (version française, par défaut)
+hebergements-liste.html  Liste complète des hébergements (français)
+en/index.html        Version anglaise du site
+en/hebergements-liste.html  Liste des hébergements (anglais)
 css/style.css        Mise en page et couleurs (variables en tête du fichier)
 js/config.js         Réglages : date, cagnotte, WhatsApp, RSVP, lieux, événements, galerie
 js/main.js           Comportements (menu, compte à rebours, carte, formulaire…)
 js/gate.js            Verrou d'accès par mot de passe (voir section dédiée)
+js/lang.js            Choix de la langue FR / EN (voir section « Version anglaise »)
 assets/img/          Photos du site
 assets/gallery/       Photos de la galerie (après le mariage)
 assets/favicon.svg    Icône de l’onglet
@@ -49,6 +53,19 @@ echo -n "nouveaumotdepasse" | shasum -a 256
 ```
 
 (ou `sha256sum` sous Linux), puis collez le résultat dans `EXPECTED_HASH`.
+
+## Version anglaise
+
+Le site existe en deux langues. Le **français reste la version par défaut** (`index.html`, à la racine) ; la version anglaise est dans le dossier `en/` (adresse : `https://emma-arnaud.fr/en/`).
+
+- Un sélecteur **FR · EN** en haut à droite de chaque page permet de passer d'une langue à l'autre en restant au même endroit de la page.
+- Quand un invité choisit l'anglais, son navigateur s'en souvient : s'il revient plus tard sur `emma-arnaud.fr`, il arrive directement sur la version anglaise. S'il clique sur « FR », il revient au français. Vous pouvez aussi envoyer directement le lien `https://emma-arnaud.fr/en/` à vos invités étrangers.
+- Le mot de passe est commun aux deux versions (saisi une seule fois par appareil).
+- Les réponses RSVP des deux versions arrivent dans **le même tableau Google Sheets**, avec les mêmes valeurs (oui / non…), quelle que soit la langue.
+
+**Quand vous modifiez un texte, pensez à le modifier aussi dans la version anglaise** (`en/index.html` ou `en/hebergements-liste.html`). Les deux fichiers ont la même structure, section par section ; les chemins des images y commencent par `../` (ex. `../assets/img/hero.jpg`).
+
+Dans `js/config.js`, chaque événement du calendrier a un bloc `en: { … }` avec son titre et sa description en anglais. Les messages affichés par le site (erreurs du formulaire, notifications…) sont traduits en haut de `js/main.js` (objet `MESSAGES`).
 
 ## WhatsApp
 

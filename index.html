@@ -1,11 +1,15 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-alt-en="en/">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Emma &amp; Arnaud — 31 juillet 2027</title>
   <meta name="description" content="Emma &amp; Arnaud se marient du 30 juillet au 1er août 2027. Programme du week-end, accès, hébergements et RSVP.">
   <meta name="robots" content="noindex, nofollow">
+  <link rel="alternate" hreflang="fr" href="https://emma-arnaud.fr/">
+  <link rel="alternate" hreflang="en" href="https://emma-arnaud.fr/en/">
+  <!-- Langue : renvoie vers la version anglaise si l'invité l'a choisie (voir js/lang.js) -->
+  <script src="js/lang.js"></script>
   <meta name="theme-color" content="#304038">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
@@ -85,9 +89,15 @@
         </ul>
       </nav>
 
-      <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
-        <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
-      </button>
+      <div class="header-actions">
+        <nav class="lang-switch" aria-label="Langue / Language">
+          <a href="./" lang="fr" hreflang="fr" aria-current="true" data-lang-link="fr">FR</a>
+          <a href="en/" lang="en" hreflang="en" data-lang-link="en">EN</a>
+        </nav>
+        <button class="menu-toggle" id="menu-toggle" type="button" aria-label="Ouvrir le menu" aria-expanded="false" aria-controls="mobile-menu">
+          <svg class="icon" aria-hidden="true"><use href="#i-menu"/></svg>
+        </button>
+      </div>
     </div>
 
     <!-- Le contenu de ce menu est copié depuis la navigation principale par main.js -->
@@ -424,7 +434,7 @@
             <div class="card__body"><h3 class="card__title">Canal du Loing</h3><p class="card__text">Une idée de promenade paisible au bord de l’eau.</p></div>
           </article>
           <article class="card reveal">
-            <div class="card__media card__media--short"><img src="https://le-cdn.website-editor.net/s/2f0d09fb2e194171b2543d0b057e396b/dms3rep/multi/opt/pm_37_86_86473-861a289a95-whr-1920w.jpg?Expires=1792912425&Signature=NGajlCCg~iAxPfa9EEGr7U2-luH5Z~O3sR~7ALaH1kJrykW1HkHPu4Rw4ZUFFmm0hYOmkHvVFsE8rfG7mopmljEJMNIKf~hkbRiti3ADTxwUQAXhUTYEpJpZmS8TeT8xyKAmjPG3XBdfqKRYJMjdlESeKYf01zm2IiA470vKf33ThDsoSrLAVs3fJITW6K7PCHwSwKJwZq2bLmcRO6Huos1NeQcjFZ8ljdXqVAqOJ5m6DPlW8QD~i-peWgzl2hjCzrSiHm4pbbmqHtW9pwtY3A7tjotAkM1YvkGkmtinVxuKbVY5zwE541OC1QNoaDatg7AIPD1THtIut1h8-mJE0A__&Key-Pair-Id=K2NXBXLF010TJW" alt="Le château de Rosa Bonheur" loading="lazy"></div>
+            <div class="card__media card__media--short"><img src="assets/img/rosa-bonheur.jpg" alt="L’atelier de Rosa Bonheur, avec ses tableaux, son piano et ses animaux naturalisés" loading="lazy"></div>
             <div class="card__body"><h3 class="card__title">Le château de Rosa Bonheur</h3><p class="card__text">Une invitation à découvrir, sur réservation, la demeure, l'atelier et les oeuvres de l'artiste Rosa Bonheur.</p></div>
           </article>
         </div>

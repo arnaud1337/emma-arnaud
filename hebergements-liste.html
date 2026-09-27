@@ -1,11 +1,15 @@
 <!doctype html>
-<html lang="fr">
+<html lang="fr" data-alt-en="en/hebergements-liste.html">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Hébergements à proximité — Emma &amp; Arnaud</title>
   <meta name="description" content="Liste d’hébergements à proximité de l’Orangerie du Moulin, recommandés pour le mariage d’Emma &amp; Arnaud.">
   <meta name="robots" content="noindex, nofollow">
+  <link rel="alternate" hreflang="fr" href="https://emma-arnaud.fr/hebergements-liste.html">
+  <link rel="alternate" hreflang="en" href="https://emma-arnaud.fr/en/hebergements-liste.html">
+  <!-- Langue : renvoie vers la version anglaise si l'invité l'a choisie (voir js/lang.js) -->
+  <script src="js/lang.js"></script>
   <meta name="theme-color" content="#304038">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
 
@@ -56,7 +60,13 @@
   <header class="site-header">
     <div class="site-header__bar">
       <a class="logo" href="index.html" aria-label="Retour à l’accueil">E&amp;A</a>
-      <a class="header-back" href="index.html#hebergements">&larr; Retour au site</a>
+      <div class="header-actions">
+        <a class="header-back" href="index.html#hebergements">&larr; Retour au site</a>
+        <nav class="lang-switch" aria-label="Langue / Language">
+          <a href="hebergements-liste.html" lang="fr" hreflang="fr" aria-current="true" data-lang-link="fr">FR</a>
+          <a href="en/hebergements-liste.html" lang="en" hreflang="en" data-lang-link="en">EN</a>
+        </nav>
+      </div>
     </div>
   </header>
 
