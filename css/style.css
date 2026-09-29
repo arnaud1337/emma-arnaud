@@ -368,6 +368,9 @@ img.is-broken { visibility: hidden; } /* image manquante : on laisse voir le dé
   border-bottom: 1px solid rgba(48, 64, 56, .35); outline: none; font-size: 1rem;
 }
 .field textarea { min-height: 5rem; resize: vertical; }
+.field__optional { font-weight: 400; letter-spacing: 0; text-transform: none; color: var(--muted); }
+.field__hint { margin-top: .4rem; font-size: .8rem; color: var(--muted); }
+.field input::placeholder { color: #a5a89f; }
 .field input:focus, .field textarea:focus { border-color: var(--bronze); box-shadow: 0 1px 0 var(--bronze); }
 .field input[aria-invalid="true"] { border-color: #9f3131; }
 .field__error { min-height: 1.15rem; padding-top: .25rem; font-size: .8rem; color: #9f3131; }

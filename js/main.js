@@ -32,6 +32,7 @@
       errFirstName: "Merci d’indiquer votre prénom.",
       errLastName: "Merci d’indiquer votre nom.",
       errEmail: "Merci d’indiquer une adresse e-mail valide.",
+      errPhone: "Merci d’indiquer un numéro valide, avec l’indicatif du pays si besoin.",
       errChoice: "Merci de choisir une réponse.",
       errMoments: "Merci de sélectionner au moins un moment du week-end.",
       sending: "Envoi de votre réponse…",
@@ -57,6 +58,7 @@
       errFirstName: "Please enter your first name.",
       errLastName: "Please enter your last name.",
       errEmail: "Please enter a valid e-mail address.",
+      errPhone: "Please enter a valid number, including your country code.",
       errChoice: "Please choose an answer.",
       errMoments: "Please select at least one part of the weekend.",
       sending: "Sending your reply…",
@@ -433,6 +435,10 @@
       if (!value("prenom")) errors.push(["prenom", t("errFirstName")]);
       if (!value("nom")) errors.push(["nom", t("errLastName")]);
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value("email"))) errors.push(["email", t("errEmail")]);
+      const phoneDigits = value("whatsapp").replace(/\D/g, "");
+      if (value("whatsapp") && (phoneDigits.length < 8 || phoneDigits.length > 15 || /[^\d\s+().\-\/]/.test(value("whatsapp")))) {
+        errors.push(["whatsapp", t("errPhone")]);
+      }
       if (!value("presence")) errors.push(["presence", t("errChoice")]);
       if (value("presence") === "oui") {
         if (!fd.getAll("moments").length) errors.push(["moments", t("errMoments")]);
@@ -446,14 +452,12 @@
       const moments = fd.getAll("moments");
       const yesNo = flag => (flag ? "oui" : "non");
       return {
+        langue: lang,
         prenom: value("prenom"),
         nom: value("nom"),
         email: value("email"),
+        whatsapp: value("whatsapp"),
         presence: value("presence"),
-        // Une réponse par invité : ces colonnes restent vides dans le tableau (conservées pour ne pas le décaler).
-        accompagne: "",
-        accompagnant_prenom: "",
-        accompagnant_nom: "",
         vendredi: yesNo(going && moments.includes("vendredi")),
         visite_samedi_matin: yesNo(going && moments.includes("visite")),
         samedi: yesNo(going && moments.includes("samedi")),

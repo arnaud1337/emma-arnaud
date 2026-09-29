@@ -67,14 +67,9 @@ Le site existe en deux langues. Le **français reste la version par défaut** (`
 
 Dans `js/config.js`, chaque événement du calendrier a un bloc `en: { … }` avec son titre et sa description en anglais. Les messages affichés par le site (erreurs du formulaire, notifications…) sont traduits en haut de `js/main.js` (objet `MESSAGES`).
 
-## WhatsApp
+## WhatsApp et e-mail
 
-Le bouton « Écrivez-nous sur WhatsApp » (section RSVP) et le lien « contactez-nous » (section Hébergements) utilisent `whatsappUrl` dans `js/config.js`, actuellement vide : ils affichent « bientôt disponible » tant qu'il n'est pas renseigné. Deux options :
-
-- **Discussion de groupe** (recommandé, permet de vous joindre tous les deux dans la même conversation) : dans l'appli WhatsApp, créez un groupe avec vous deux, puis *Infos du groupe → Inviter via lien* et copiez le lien `https://chat.whatsapp.com/...`.
-- **Un seul numéro** : `https://wa.me/33612345678` (indicatif du pays, puis le numéro sans le 0 initial ni espaces).
-
-Collez le lien choisi dans `whatsappUrl`.
+Les liens « Emma » et « Arnaud » (sections Informations pratiques, Hébergements et RSVP) ouvrent une conversation WhatsApp avec chacun de vous ; le lien « par e-mail » prépare un e-mail adressé à vous deux. Les numéros et adresses se trouvent dans `js/config.js`, bloc `contacts`.
 
 ## Recevoir les réponses RSVP
 
@@ -88,10 +83,23 @@ Un site statique ne peut pas enregistrer de données seul : le formulaire envoie
 4. Copiez l’URL obtenue (elle se termine par `/exec`) dans `rsvp.endpoint`.
 
 ```js
+// Réponses RSVP du site emma-arnaud.fr → une ligne par invité dans ce tableau.
+// Chaque paire : [nom du champ envoyé par le site, titre de la colonne dans le tableau].
 const COLUMNS = [
-  "date_envoi", "prenom", "nom", "email", "presence", "accompagne",
-  "accompagnant_prenom", "accompagnant_nom", "vendredi", "visite_samedi_matin",
-  "samedi", "brunch", "navette", "allergies", "message"
+  ["date_envoi", "Date d’envoi"],
+  ["langue", "Langue"],
+  ["prenom", "Prénom"],
+  ["nom", "Nom"],
+  ["email", "E-mail"],
+  ["whatsapp", "WhatsApp"],
+  ["presence", "Présence"],
+  ["vendredi", "Vendredi (mairie + dîner)"],
+  ["visite_samedi_matin", "Samedi matin (visite)"],
+  ["samedi", "Samedi (cérémonie, dîner, soirée)"],
+  ["brunch", "Dimanche (brunch)"],
+  ["navette", "Navette samedi soir"],
+  ["allergies", "Allergies / contraintes alimentaires"],
+  ["message", "Message"]
 ];
 
 function doPost(e) {
@@ -99,8 +107,24 @@ function doPost(e) {
   lock.waitLock(10000);
   try {
     const sheet = SpreadsheetApp.getActiveSpreadsheet().getSheets()[0];
-    if (sheet.getLastRow() === 0) sheet.appendRow(COLUMNS);
-    sheet.appendRow(COLUMNS.map(name => e.parameter[name] || ""));
+
+    // Tableau vide : on écrit la ligne de titres, en gras et figée en haut.
+    if (sheet.getLastRow() === 0) {
+      sheet.appendRow(COLUMNS.map(column => column[1]));
+      sheet.getRange(1, 1, 1, COLUMNS.length).setFontWeight("bold");
+      sheet.setFrozenRows(1);
+    }
+
+    const data = e.parameter || {};
+    const row = COLUMNS.map(([key]) => {
+      const value = String(data[key] || "").trim();
+      if (key === "date_envoi" && value) return new Date(value);
+      if (key === "langue") return value === "en" ? "Anglais" : "Français";
+      // Écrit en texte brut : un numéro (+33…, 06…) resterait sinon un nombre ou une formule.
+      return /^[=+\-@0-9]/.test(value) ? "'" + value : value;
+    });
+    sheet.appendRow(row);
+
     return ContentService.createTextOutput(JSON.stringify({ ok: true }))
       .setMimeType(ContentService.MimeType.JSON);
   } finally {
@@ -110,6 +134,8 @@ function doPost(e) {
 ```
 
 Après chaque modification du script, refaites **Déployer → Gérer les déploiements → Modifier → Nouvelle version**.
+
+Le tableau reçoit une ligne par invité, avec des titres de colonnes lisibles (écrits automatiquement quand le tableau est vide). Si vous changez les champs du formulaire, videz entièrement le tableau pour que la ligne de titres soit réécrite.
 
 ### Alternatives
 
@@ -123,7 +149,6 @@ Si `endpoint` est vide mais `contactEmail` renseigné, le formulaire ouvre un e-
 ## Points à vérifier avant l’envoi
 
 - **Cagnotte** : `giftUrl` est vide dans `js/config.js` ; les boutons affichent « bientôt disponible » tant qu’il n’est pas rempli.
-- **WhatsApp** : voir la section ci-dessus, `whatsappUrl` est vide pour le moment.
 - **RSVP** : `rsvp.endpoint` est configuré avec votre script Google Apps Script ; le formulaire est prêt à enregistrer les réponses. Envoyez-vous une réponse test avant de diffuser le lien aux invités, pour vérifier qu'elle arrive bien dans votre Google Sheet.
 - **Coordonnées de la carte** : celles de l'Orangerie du Moulin, de l'Abbaye, de Vaugouard, de la Mairie du 11e et du Danica ont toutes été vérifiées à partir de vos liens Google Maps et sont précises.
 - **Cérémonie du samedi** : l’heure et le lieu restent annoncés « prochainement » dans `index.html`, comme demandé.
