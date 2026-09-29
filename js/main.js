@@ -33,8 +33,6 @@
       errLastName: "Merci d’indiquer votre nom.",
       errEmail: "Merci d’indiquer une adresse e-mail valide.",
       errChoice: "Merci de choisir une réponse.",
-      errCompanionFirst: "Merci d’indiquer le prénom de votre accompagnant.",
-      errCompanionLast: "Merci d’indiquer le nom de votre accompagnant.",
       errMoments: "Merci de sélectionner au moins un moment du week-end.",
       sending: "Envoi de votre réponse…",
       mailtoOpening: "Votre messagerie va s’ouvrir : il ne reste qu’à envoyer le message.",
@@ -60,8 +58,6 @@
       errLastName: "Please enter your last name.",
       errEmail: "Please enter a valid e-mail address.",
       errChoice: "Please choose an answer.",
-      errCompanionFirst: "Please enter your guest’s first name.",
-      errCompanionLast: "Please enter your guest’s last name.",
       errMoments: "Please select at least one part of the weekend.",
       sending: "Sending your reply…",
       mailtoOpening: "Your e-mail app will open: just send the message.",
@@ -409,7 +405,6 @@
     if (!form) return;
 
     const attending = $("#rsvp-attending");
-    const companionNames = $("#companion-names");
     const status = $("#rsvp-status");
     const submit = $("#rsvp-submit");
     const success = $("#rsvp-success");
@@ -423,7 +418,6 @@
     function sync() {
       const going = checked("presence") === "oui";
       setGroup(attending, going);
-      if (going) setGroup(companionNames, checked("accompagne") === "oui");
     }
     form.addEventListener("change", sync);
     sync();
@@ -441,11 +435,6 @@
       if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value("email"))) errors.push(["email", t("errEmail")]);
       if (!value("presence")) errors.push(["presence", t("errChoice")]);
       if (value("presence") === "oui") {
-        if (!value("accompagne")) errors.push(["accompagne", t("errChoice")]);
-        if (value("accompagne") === "oui") {
-          if (!value("accompagnant_prenom")) errors.push(["accompagnant_prenom", t("errCompanionFirst")]);
-          if (!value("accompagnant_nom")) errors.push(["accompagnant_nom", t("errCompanionLast")]);
-        }
         if (!fd.getAll("moments").length) errors.push(["moments", t("errMoments")]);
       }
       return errors;
@@ -461,9 +450,10 @@
         nom: value("nom"),
         email: value("email"),
         presence: value("presence"),
-        accompagne: going ? value("accompagne") : "",
-        accompagnant_prenom: value("accompagnant_prenom"),
-        accompagnant_nom: value("accompagnant_nom"),
+        // Une réponse par invité : ces colonnes restent vides dans le tableau (conservées pour ne pas le décaler).
+        accompagne: "",
+        accompagnant_prenom: "",
+        accompagnant_nom: "",
         vendredi: yesNo(going && moments.includes("vendredi")),
         visite_samedi_matin: yesNo(going && moments.includes("visite")),
         samedi: yesNo(going && moments.includes("samedi")),

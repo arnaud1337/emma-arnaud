@@ -269,6 +269,13 @@
           </details>
 
           <details class="faq">
+            <summary>Can we bring our children? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__body">
+              <p>We adore your children, but unfortunately the wedding venue is not suitable for them, as there are many unfenced streams and waterways on the grounds. If you are unable to come without your children, please get in touch with us: <a class="link" href="#" data-whatsapp="emma">Emma</a> · <a class="link" href="#" data-whatsapp="arnaud">Arnaud</a> · <a class="link" href="#" data-email-both>by e-mail</a>.</p>
+            </div>
+          </details>
+
+          <details class="faq">
             <summary>Is there a dress code? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
             <div class="faq__body">
               <p>We would like the wedding to be elegant but relaxed, celebrating colourful, country-style outfits. Above all, wear something you feel good in — and that you’ll want to dance in until the very end of the night!</p>
@@ -456,6 +463,8 @@
         </div>
 
         <form class="form" id="rsvp-form" novalidate>
+          <p class="form__intro">Please fill in this form <strong>once per guest</strong>: if you are coming with others, each person should send their own reply.</p>
+
           <div class="form__grid">
             <div class="field">
               <label for="prenom">First name</label>
@@ -483,27 +492,6 @@
           </fieldset>
 
           <div class="form__more" id="rsvp-attending" hidden>
-            <fieldset aria-describedby="accompagne-error">
-              <legend>Will you be bringing a guest?</legend>
-              <div class="choice-row">
-                <label class="choice"><input type="radio" name="accompagne" value="oui"><span>Yes</span></label>
-                <label class="choice"><input type="radio" name="accompagne" value="non"><span>No</span></label>
-              </div>
-              <p class="field__error" id="accompagne-error"></p>
-            </fieldset>
-
-            <div class="form__grid" id="companion-names" hidden>
-              <div class="field">
-                <label for="accompagnant_prenom">Your guest’s first name</label>
-                <input id="accompagnant_prenom" name="accompagnant_prenom" type="text" aria-describedby="accompagnant_prenom-error">
-                <p class="field__error" id="accompagnant_prenom-error"></p>
-              </div>
-              <div class="field">
-                <label for="accompagnant_nom">Your guest’s last name</label>
-                <input id="accompagnant_nom" name="accompagnant_nom" type="text" aria-describedby="accompagnant_nom-error">
-                <p class="field__error" id="accompagnant_nom-error"></p>
-              </div>
-            </div>
 
             <fieldset aria-describedby="moments-error">
               <legend>Which parts of the weekend will you attend?</legend>
@@ -539,7 +527,7 @@
 
           <div class="success" id="rsvp-success" hidden>
             <p class="success__title">Thank you so much.</p>
-            <p>Your reply has been saved. We can’t wait to see you.</p>
+            <p>Your reply has been saved. If others are coming with you, please make sure each of them fills in the form too. We can’t wait to see you.</p>
           </div>
         </form>
       </div>

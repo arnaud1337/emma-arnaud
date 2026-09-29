@@ -269,6 +269,13 @@
           </details>
 
           <details class="faq">
+            <summary>Pouvons-nous venir avec nos enfants&nbsp;? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
+            <div class="faq__body">
+              <p>Nous adorons vos enfants, mais le lieu du mariage n’est malheureusement pas adapté à leur présence, en raison des nombreux cours d’eau non sécurisés qui le traversent. Si vous êtes dans l’impossibilité de venir sans vos enfants, merci de bien vouloir nous contacter&nbsp;: <a class="link" href="#" data-whatsapp="emma">Emma</a> · <a class="link" href="#" data-whatsapp="arnaud">Arnaud</a> · <a class="link" href="#" data-email-both>par e-mail</a>.</p>
+            </div>
+          </details>
+
+          <details class="faq">
             <summary>Y a-t-il un dress code&nbsp;? <svg class="icon" aria-hidden="true"><use href="#i-plus"/></svg></summary>
             <div class="faq__body">
               <p>Nous souhaitons un mariage élégant mais décontracté, mettant à l'honneur vos tenues champêtres et colorées. Venez surtout dans une tenue dans laquelle vous vous sentez bien et avec laquelle vous aurez envie de danser jusqu’au bout de la nuit&nbsp;!</p>
@@ -456,6 +463,8 @@
         </div>
 
         <form class="form" id="rsvp-form" novalidate>
+          <p class="form__intro">Merci de remplir ce formulaire <strong>une fois par invité</strong> : si vous venez à plusieurs, chaque personne envoie sa propre réponse.</p>
+
           <div class="form__grid">
             <div class="field">
               <label for="prenom">Prénom</label>
@@ -482,27 +491,6 @@
           </fieldset>
 
           <div class="form__more" id="rsvp-attending" hidden>
-            <fieldset aria-describedby="accompagne-error">
-              <legend>Viendrez-vous accompagné(e)&nbsp;?</legend>
-              <div class="choice-row">
-                <label class="choice"><input type="radio" name="accompagne" value="oui"><span>Oui</span></label>
-                <label class="choice"><input type="radio" name="accompagne" value="non"><span>Non</span></label>
-              </div>
-              <p class="field__error" id="accompagne-error"></p>
-            </fieldset>
-
-            <div class="form__grid" id="companion-names" hidden>
-              <div class="field">
-                <label for="accompagnant_prenom">Prénom de l’accompagnant</label>
-                <input id="accompagnant_prenom" name="accompagnant_prenom" type="text" aria-describedby="accompagnant_prenom-error">
-                <p class="field__error" id="accompagnant_prenom-error"></p>
-              </div>
-              <div class="field">
-                <label for="accompagnant_nom">Nom de l’accompagnant</label>
-                <input id="accompagnant_nom" name="accompagnant_nom" type="text" aria-describedby="accompagnant_nom-error">
-                <p class="field__error" id="accompagnant_nom-error"></p>
-              </div>
-            </div>
 
             <fieldset aria-describedby="moments-error">
               <legend>Votre présence</legend>
@@ -538,7 +526,7 @@
 
           <div class="success" id="rsvp-success" hidden>
             <p class="success__title">Merci beaucoup.</p>
-            <p>Votre réponse a bien été enregistrée. Nous avons hâte de vous retrouver.</p>
+            <p>Votre réponse a bien été enregistrée. Si d’autres personnes vous accompagnent, pensez à ce que chacune remplisse le formulaire. Nous avons hâte de vous retrouver.</p>
           </div>
         </form>
       </div>

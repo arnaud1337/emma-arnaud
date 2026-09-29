@@ -354,6 +354,8 @@ img.is-broken { visibility: hidden; } /* image manquante : on laisse voir le dé
   display: grid; gap: 2rem; padding: 1.75rem; background: var(--ivory);
   box-shadow: 8px 8px 0 var(--sage); align-content: start;
 }
+.form__intro { padding-left: 1rem; border-left: 2px solid var(--bronze); font-size: .92rem; line-height: 1.6; color: var(--copy); }
+.form__intro strong { color: var(--forest); }
 .form__grid { display: grid; gap: 1.5rem 2rem; }
 .form__more { display: grid; gap: 2rem; }
 
